@@ -1,0 +1,19 @@
+.icon-app::before {
+    content: "📘";
+    margin-right: 6px;
+}
+.icon-device::before {
+    content: "⚙️";
+    margin-right: 6px;
+}
+.icon-warning::before {
+    content: "⚠️";
+    margin-right: 6px;
+}
+.icon-search::before {
+    content: "🔍";
+    margin-right: 6px;
+}
+.icon-moon::before {
+    content: "🌙";
+}
