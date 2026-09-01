@@ -1,0 +1,261 @@
+{
+  "factory_fault_library": [
+    {
+      "device_type": "风机",
+      "fault_categories": [
+        {
+          "category_id": "fan_start_fault",
+          "category_name": "启动类故障",
+          "symptoms": ["风机无法启动", "启动后立即跳闸", "启动电流过高"],
+          "possible_causes": ["电机绕组短路", "轴承卡滞", "叶轮被异物卡住", "变频器启动参数错误"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "测量启动电流是否异常偏高" },
+            { "step_order": 2, "step_detail": "手动转动叶轮检查是否卡滞" },
+            { "step_order": 3, "step_detail": "检查电机绕组绝缘" },
+            { "step_order": 4, "step_detail": "检查变频器启动参数是否正确" }
+          ],
+          "risk_level": "中",
+          "expand_link": "ca://s?q=扩展风机启动类故障库"
+        },
+        {
+          "category_id": "fan_run_fault",
+          "category_name": "运行类故障",
+          "symptoms": ["风机运行一段时间后停机", "风机转速下降", "风机噪音增大"],
+          "possible_causes": ["轴承磨损", "叶轮积尘导致负载增加", "电机过载", "变频器输出不稳定"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查轴承是否磨损或缺油" },
+            { "step_order": 2, "step_detail": "检查叶轮是否积尘导致负载增加" },
+            { "step_order": 3, "step_detail": "测量电机运行电流是否超过额定值" },
+            { "step_order": 4, "step_detail": "检查变频器输出频率是否稳定" }
+          ],
+          "risk_level": "中",
+          "expand_link": "ca://s?q=扩展风机运行类故障库"
+        },
+        {
+          "category_id": "fan_overheat_fault",
+          "category_name": "过热类故障",
+          "symptoms": ["风机壳体发烫", "风机温度报警", "风机运行一段时间后跳闸"],
+          "possible_causes": ["散热不良", "负载过大", "电机老化", "环境温度过高"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查散热片是否积尘" },
+            { "step_order": 2, "step_detail": "检查负载是否异常" },
+            { "step_order": 3, "step_detail": "测量电机温升是否正常" },
+            { "step_order": 4, "step_detail": "检查环境温度是否过高" }
+          ],
+          "risk_level": "高",
+          "expand_link": "ca://s?q=扩展风机过热类故障库"
+        },
+        {
+          "category_id": "fan_noise_fault",
+          "category_name": "异常噪音类故障",
+          "symptoms": ["风机出现金属摩擦声", "风机出现嗡嗡声", "风机出现敲击声"],
+          "possible_causes": ["轴承损坏", "叶轮偏心", "风道异物", "电机内部故障"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查轴承是否磨损或损坏" },
+            { "step_order": 2, "step_detail": "检查叶轮是否偏心或松动" },
+            { "step_order": 3, "step_detail": "检查风道是否有异物" },
+            { "step_order": 4, "step_detail": "必要时拆机检查电机内部" }
+          ],
+          "risk_level": "中",
+          "expand_link": "ca://s?q=扩展风机异常噪音类故障库"
+        }
+      ]
+    },
+
+    {
+      "device_type": "水泵",
+      "fault_categories": [
+        {
+          "category_id": "pump_start_fault",
+          "category_name": "启动类故障",
+          "symptoms": ["水泵无法启动", "启动后立即跳闸", "启动电流过高"],
+          "possible_causes": ["电机绕组短路", "泵体卡滞", "叶轮堵塞", "变频器启动参数错误"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "测量启动电流是否异常偏高" },
+            { "step_order": 2, "step_detail": "检查泵体是否卡滞" },
+            { "step_order": 3, "step_detail": "检查叶轮是否堵塞" },
+            { "step_order": 4, "step_detail": "检查变频器启动参数是否正确" }
+          ],
+          "risk_level": "高",
+          "expand_link": "ca://s?q=扩展水泵启动类故障库"
+        },
+        {
+          "category_id": "pump_run_fault",
+          "category_name": "运行类故障",
+          "symptoms": ["水泵流量不足", "水泵运行时噪音增大", "水泵运行一段时间后停机"],
+          "possible_causes": ["管道堵塞", "叶轮磨损", "轴承损坏", "电机过载"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查管道是否堵塞" },
+            { "step_order": 2, "step_detail": "检查叶轮是否磨损" },
+            { "step_order": 3, "step_detail": "检查轴承是否损坏" },
+            { "step_order": 4, "step_detail": "测量电机运行电流是否正常" }
+          ],
+          "risk_level": "中",
+          "expand_link": "ca://s?q=扩展水泵运行类故障库"
+        },
+        {
+          "category_id": "pump_overheat_fault",
+          "category_name": "过热类故障",
+          "symptoms": ["水泵壳体发烫", "水泵温度报警", "水泵运行一段时间后跳闸"],
+          "possible_causes": ["散热不良", "负载过大", "电机老化", "环境温度过高"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查散热片是否积尘" },
+            { "step_order": 2, "step_detail": "检查负载是否异常" },
+            { "step_order": 3, "step_detail": "测量电机温升是否正常" },
+            { "step_order": 4, "step_detail": "检查环境温度是否过高" }
+          ],
+          "risk_level": "高",
+          "expand_link": "ca://s?q=扩展水泵过热类故障库"
+        },
+        {
+          "category_id": "pump_noise_fault",
+          "category_name": "异常噪音类故障",
+          "symptoms": ["水泵出现金属摩擦声", "水泵出现嗡嗡声", "水泵出现敲击声"],
+          "possible_causes": ["轴承损坏", "叶轮偏心", "泵体内部异物", "电机内部故障"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查轴承是否磨损或损坏" },
+            { "step_order": 2, "step_detail": "检查叶轮是否偏心或松动" },
+            { "step_order": 3, "step_detail": "检查泵体内部是否有异物" },
+            { "step_order": 4, "step_detail": "必要时拆机检查电机内部" }
+          ],
+          "risk_level": "中",
+          "expand_link": "ca://s?q=扩展水泵异常噪音类故障库"
+        }
+      ]
+    },
+
+    {
+      "device_type": "空压机",
+      "fault_categories": [
+        {
+          "category_id": "compressor_start_fault",
+          "category_name": "启动类故障",
+          "symptoms": ["空压机无法启动", "启动后立即跳闸", "启动电流过高"],
+          "possible_causes": ["电机绕组短路", "压缩机卡滞", "润滑油不足导致抱死", "变频器启动参数错误"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "测量启动电流是否异常偏高" },
+            { "step_order": 2, "step_detail": "检查压缩机是否卡滞" },
+            { "step_order": 3, "step_detail": "检查润滑油是否不足" },
+            { "step_order": 4, "step_detail": "检查变频器启动参数是否正确" }
+          ],
+          "risk_level": "高",
+          "expand_link": "ca://s?q=扩展空压机启动类故障库"
+        },
+        {
+          "category_id": "compressor_run_fault",
+          "category_name": "运行类故障",
+          "symptoms": ["空压机压力不足", "运行噪音增大", "运行一段时间后停机"],
+          "possible_causes": ["进气过滤器堵塞", "压缩机磨损", "轴承损坏", "电机过载"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查进气过滤器是否堵塞" },
+            { "step_order": 2, "step_detail": "检查压缩机是否磨损" },
+            { "step_order": 3, "step_detail": "检查轴承是否损坏" },
+            { "step_order": 4, "step_detail": "测量电机运行电流是否正常" }
+          ],
+          "risk_level": "中",
+          "expand_link": "ca://s?q=扩展空压机运行类故障库"
+        },
+        {
+          "category_id": "compressor_overheat_fault",
+          "category_name": "过热类故障",
+          "symptoms": ["空压机壳体发烫", "温度报警", "运行一段时间后跳闸"],
+          "possible_causes": ["散热风扇损坏", "散热片积尘", "润滑油不足", "环境温度过高"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查散热风扇是否正常工作" },
+            { "step_order": 2, "step_detail": "清理散热片积尘" },
+            { "step_order": 3, "step_detail": "检查润滑油是否不足" },
+            { "step_order": 4, "step_detail": "检查环境温度是否过高" }
+          ],
+          "risk_level": "高",
+          "expand_link": "ca://s?q=扩展空压机过热类故障库"
+        },
+        {
+          "category_id": "compressor_noise_fault",
+          "category_name": "异常噪音类故障",
+          "symptoms": ["出现金属摩擦声", "出现嗡嗡声", "出现敲击声"],
+          "possible_causes": ["轴承损坏", "压缩机内部磨损", "皮带松动", "电机内部故障"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查轴承是否磨损或损坏" },
+            { "step_order": 2, "step_detail": "检查压缩机内部是否磨损" },
+            { "step_order": 3, "step_detail": "检查皮带是否松动" },
+            { "step_order": 4, "step_detail": "必要时拆机检查电机内部" }
+          ],
+          "risk_level": "中",
+          "expand_link": "ca://s?q=扩展空压机异常噪音类故障库"
+        }
+      ]
+    },
+
+    {
+      "device_type": "变频器",
+      "fault_categories": [
+        {
+          "category_id": "vfd_overcurrent_fault",
+          "category_name": "过电流类故障",
+          "symptoms": ["变频器报 OC", "电机启动瞬间跳闸", "运行电流偏高"],
+          "possible_causes": ["电机短路", "负载过大", "加速时间过短", "输出端子松动"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "测量电机三相电流是否平衡" },
+            { "step_order": 2, "step_detail": "检查负载是否卡滞" },
+            { "step_order": 3, "step_detail": "增加加速时间（ACC）" },
+            { "step_order": 4, "step_detail": "检查输出端子是否松动" }
+          ],
+          "risk_level": "高",
+          "expand_link": "ca://s?q=扩展变频器过电流类故障库"
+        },
+        {
+          "category_id": "vfd_overvoltage_fault",
+          "category_name": "过电压类故障",
+          "symptoms": ["变频器报 OV", "减速时跳闸", "电机惯量大导致停机"],
+          "possible_causes": ["减速时间过短", "电机惯量过大", "电源电压波动", "制动单元损坏"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "增加减速时间（DEC）" },
+            { "step_order": 2, "step_detail": "检查制动单元是否损坏" },
+            { "step_order": 3, "step_detail": "测量电源电压是否稳定" },
+            { "step_order": 4, "step_detail": "检查负载惯量是否过大" }
+          ],
+          "risk_level": "中",
+          "expand_link": "ca://s?q=扩展变频器过电压类故障库"
+        },
+        {
+          "category_id": "vfd_overheat_fault",
+          "category_name": "过热类故障",
+          "symptoms": ["变频器温度报警", "风扇不转", "运行一段时间后停机"],
+          "possible_causes": ["散热风扇损坏", "散热片积尘", "环境温度过高", "变频器内部老化"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查风扇是否正常工作" },
+            { "step_order": 2, "step_detail": "清理散热片积尘" },
+            { "step_order": 3, "step_detail": "检查环境温度是否过高" },
+            { "step_order": 4, "step_detail": "必要时更换风扇或变频器" }
+          ],
+          "risk_level": "高",
+          "expand_link": "ca://s?q=扩展变频器过热类故障库"
+        },
+        {
+          "category_id": "vfd_comm_fault",
+          "category_name": "通讯类故障",
+          "symptoms": ["变频器通讯中断", "PLC 无法读取变频器数据", "通讯报警闪烁"],
+          "possible_causes": ["通讯线松动", "通讯协议设置错误", "IP 地址冲突", "通讯模块损坏"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "检查通讯线是否松动或断裂" },
+            { "step_order": 2, "step_detail": "检查通讯协议是否一致（Modbus/485/TCP）" },
+            { "step_order": 3, "step_detail": "检查 IP 地址是否冲突" },
+            { "step_order": 4, "step_detail": "检查通讯模块是否损坏" }
+          ],
+          "risk_level": "中",
+          "expand_link": "ca://s?q=扩展变频器通讯类故障库"
+        }
+      ]
+    },
+
+    {
+      "device_type": "PLC",
+      "fault_categories": [
+        {
+          "category_id": "plc_power_fault",
+          "category_name": "PLC 无法上电类故障",
+          "symptoms": ["PLC 无显示", "电源指示灯不亮", "上电后立即掉电"],
+          "possible_causes": ["24V 电源故障", "电源模块损坏", "电源接线松动", "电源负载过大"],
+          "troubleshooting_steps": [
+            { "step_order": 1, "step_detail": "测量 24V 电源是否正常" },
+            { "step_order": 2, "step_detail": "检查 PLC 电源端子是否松
