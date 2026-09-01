@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>工厂故障库 Web 应用（专业版）</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/icons.css">
+</head>
+<body>
+
+<header>
+    <div class="title">
+        <span class="icon-app"></span>
+        工厂设备故障库（专业版）
+    </div>
+
+    <div class="search-box">
+        <input id="searchInput" type="text" placeholder="搜索症状 / 原因 / 故障名称">
+    </div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <span class="icon-moon"></span>
+    </div>
+</header>
+
+<div id="container">
+    <div id="sidebar"></div>
+    <div id="content">
+        <h2>请选择左侧设备查看故障详情</h2>
+        <p>也可以在上方搜索框中输入关键字进行全库检索。</p>
+    </div>
+</div>
+
+<script>
+let db = null;
+let currentDevice = null;
+
+/* 深色模式切换 */
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+}
+
+/* 加载 JSON 数据 */
+fetch("data.json")
+    .then(response => response.json())
+    .then(data => {
+        db = data;
+        initSidebar();
+    });
+
+/* 初始化左侧设备列表 */
+function initSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.innerHTML = "";
+
+    db.factory_fault_library.forEach((device, index) => {
+        const div = document.createElement("div");
+        div.className = "device-item";
+        div.innerHTML = `<span class="icon-device"></span> ${device.device_type}`;
+
+        div.onclick = () => {
+            document.querySelectorAll(".device-item").forEach(d => d.classList.remove("active"));
+            div.classList.add("active");
+            currentDevice = device;
+            showDevice(device);
+        };
+
+        if (index === 0) {
+            div.classList.add("active");
+            currentDevice = device;
+            showDevice(device);
+        }
+
+        sidebar.appendChild(div);
+    });
+
+    document.getElementById("searchInput").addEventListener("input", () => {
+        const keyword = searchInput.value.trim();
+        if (keyword === "") {
+            showDevice(currentDevice);
+        } else {
+            searchFaults(keyword);
+        }
+    });
+}
+
+/* 展示设备详情 */
+function showDevice(device) {
+    const content = document.getElementById("content");
+    content.innerHTML = `<h2>${device.device_type}</h2>`;
+
+    device.fault_categories.forEach(fc => {
+        const block = document.createElement("div");
+        block.className = "fault-block fade-in";
+
+        const riskClass =
+            fc.risk_level === "高" ? "risk-high" :
+            fc.risk_level === "中" ? "risk-mid" :
+            "risk-low";
+
+        block.innerHTML = `
+            <div class="fault-header">
+                <h3><span class="icon-warning"></span> ${fc.category_name}</h3>
+                <span class="risk-tag ${riskClass}">${fc.risk_level}</span>
+            </div>
+
+            <div class="section-title">症状</div>
+            <ul>${fc.symptoms.map(s => `<li>${highlight(s)}</li>`).join("")}</ul>
+
+            <div class="section-title">可能原因</div>
+            <ul>${fc.possible_causes.map(s => `<li>${highlight(s)}</li>`).join("")}</ul>
+
+            <div class="section-title">排查步骤</div>
+            <ul>${fc.troubleshooting_steps.map(s => `<li>${s.step_order}. ${highlight(s.step_detail)}</li>`).join("")}</ul>
+        `;
+
+        content.appendChild(block);
+    });
+}
+
+/* 搜索高亮 */
+function highlight(text) {
+    const kw = document.getElementById("searchInput").value.trim();
+    if (!kw) return text;
+    return text.replace(new RegExp(kw, "gi"), match => `<mark>${match}</mark>`);
+}
+
+/* 全库搜索 */
+function searchFaults(keyword) {
+    const content = document.getElementById("content");
+    const kw = keyword.toLowerCase();
+    let results = [];
+
+    db.factory_fault_library.forEach(device => {
+        device.fault_categories.forEach(fc => {
+            const pool = [
+                device.device_type,
+                fc.category_name,
+                ...fc.symptoms,
+                ...fc.possible_causes,
+                ...fc.troubleshooting_steps.map(s => s.step_detail)
+            ].join(" ").toLowerCase();
+
+            if (pool.includes(kw)) {
+                results.push({ device, fc });
+            }
+        });
+    });
+
+    content.innerHTML = `<h2>搜索结果：${keyword}</h2>`;
+
+    if (results.length === 0) {
+        content.innerHTML += `<p class="no-result">未找到匹配项。</p>`;
+        return;
+    }
+
+    results.forEach(item => {
+        const { device, fc } = item;
+        const block = document.createElement("div");
+        block.className = "fault-block fade-in";
+
+        const riskClass =
+            fc.risk_level === "高" ? "risk-high" :
+            fc.risk_level === "中" ? "risk-mid" :
+            "risk-low";
+
+        block.innerHTML = `
+            <div class="fault-header">
+                <h3><span class="icon-search"></span> ${device.device_type} - ${fc.category_name}</h3>
+                <span class="risk-tag ${riskClass}">${fc.risk_level}</span>
+            </div>
+
+            <div class="section-title">症状</div>
+            <ul>${fc.symptoms.map(s => `<li>${highlight(s)}</li>`).join("")}</ul>
+
+            <div class="section-title">可能原因</div>
+            <ul>${fc.possible_causes.map(s => `<li>${highlight(s)}</li>`).join("")}</ul>
+
+            <div class="section-title">排查步骤</div>
+            <ul>${fc.troubleshooting_steps.map(s => `<li>${s.step_order}. ${highlight(s.step_detail)}</li>`).join("")}</ul>
+        `;
+
+        content.appendChild(block);
+    });
+}
+</script>
+
+</body>
+</html>
